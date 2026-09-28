@@ -1,0 +1,281 @@
+{
+  "generated_for": "Supabase Sales CRM v1.1.2 DEV continuation",
+  "file_count": 55,
+  "files": [
+    {
+      "path": ".env.development",
+      "bytes": 158,
+      "sha256": "310811c2fafd72e933f69e429bc34cf38468e6aad5b347bdef9beb20c7c2f2d6"
+    },
+    {
+      "path": ".env.example",
+      "bytes": 218,
+      "sha256": "23569b90cb13eaabedbdf4b505f7cc9a5ce2c7759b71315f5784a5069d904c15"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 60,
+      "sha256": "af01f416f1ab806cf3e4e1ede29a16702e1718c45c7539604a760b2eb8d27858"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2868,
+      "sha256": "8bbeef148a7dfb3f62482e84ebcae57b08a39a7119b64f29a88bb7ed151729f8"
+    },
+    {
+      "path": "docs/FRONTEND_BACKEND_MAPPING.md",
+      "bytes": 1061,
+      "sha256": "fd740b281d0170d1df87a2156124f60f30c2c311f6862d8963d3f34f81ad0e0a"
+    },
+    {
+      "path": "docs/NEXT_SPRINT.md",
+      "bytes": 925,
+      "sha256": "a79087f3c046570f9aa4b436f56dfae06a2fbb7de808cf2fce9b9a6d5cb9dd8c"
+    },
+    {
+      "path": "index.html",
+      "bytes": 512,
+      "sha256": "ef6e7436d33e52c87105177b35464172f59a83ff0825100d520faf3729d67979"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 36141,
+      "sha256": "43fc59c4b24bf01200eebfb666cb937759eaf66df919b951490981c23e819a78"
+    },
+    {
+      "path": "package.json",
+      "bytes": 619,
+      "sha256": "71f9b0baf2de532546b1e6ceba11e3a6c460a888d01ffd3d46cf80aef81286fc"
+    },
+    {
+      "path": "public/manifest.webmanifest",
+      "bytes": 245,
+      "sha256": "9ab546fe018030b8b8ef918104976a720f725b250ed120631b60aebdd686e009"
+    },
+    {
+      "path": "public/sw.js",
+      "bytes": 614,
+      "sha256": "cdfa6ff4f7b39ab9669c6d6f0c951afb5a87630c853a6b005b2a3e1bcb46ceb8"
+    },
+    {
+      "path": "scripts/rls-smoke.mjs",
+      "bytes": 4211,
+      "sha256": "632e24a78023238477aab4cbea5abbaaf74640e645523d282c513f433125facd"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 2709,
+      "sha256": "7180f815618d76914143da3247da67163fd2ca5cef18ae0fa1db8362772b8783"
+    },
+    {
+      "path": "src/components/AddActivitySheet.tsx",
+      "bytes": 2028,
+      "sha256": "cf0da41fda3c80e24a52581a0edb35072d4bd0d696cb1200cab5e58c6dab5591"
+    },
+    {
+      "path": "src/components/AdminMasterConfig.tsx",
+      "bytes": 11003,
+      "sha256": "d1bea8638bf2decba9805a2ca23c688c2bf04eda6f53406e1c81429cc9ecaa96"
+    },
+    {
+      "path": "src/components/AppShell.tsx",
+      "bytes": 4620,
+      "sha256": "644c7f049e49a665fb97d364b0ef4973158542eea830ec6dc831e7d6b51b397a"
+    },
+    {
+      "path": "src/components/CompleteTaskSheet.tsx",
+      "bytes": 2175,
+      "sha256": "b7b857662346fdce70cb2619f7bb523f5042b1b553394568db10f64b3a3ded92"
+    },
+    {
+      "path": "src/components/ContactOpportunitySheets.tsx",
+      "bytes": 3092,
+      "sha256": "d820c057941af7f90949259f12b4b5228aaa57a974858b669e5a8aae5b8b78c7"
+    },
+    {
+      "path": "src/components/CreateTaskSheet.tsx",
+      "bytes": 2809,
+      "sha256": "fa625ba2f75db20b058488ae42fb203d9a114fb7db067ecb950acf9c6c3f9297"
+    },
+    {
+      "path": "src/components/NotificationSheet.tsx",
+      "bytes": 1385,
+      "sha256": "3f2672ab15a1bb2ddfe7b294513bdee8d344f69fc5d1bb03a14dca86eff40eb9"
+    },
+    {
+      "path": "src/components/OpportunitySheets.tsx",
+      "bytes": 6975,
+      "sha256": "5268eacbdd7046b64a8b16c2dabfd4b52f8ca9663202759333b2f6d42574a17e"
+    },
+    {
+      "path": "src/components/QuickCreateLead.tsx",
+      "bytes": 2539,
+      "sha256": "94f45c8799c8f217b7b194fdd6958b913ed225585fbb5e9f0a2c89caaced4df1"
+    },
+    {
+      "path": "src/components/QuoteSheet.tsx",
+      "bytes": 2769,
+      "sha256": "e5b0fe3fbd67426102300c7968d7ca4111f96ed96cfd8b9925126651983efe7d"
+    },
+    {
+      "path": "src/components/ScheduleSheet.tsx",
+      "bytes": 1932,
+      "sha256": "3745e86f14bac2f8a022b0e1af02071632148bac3fdb0677601c31e59529ccbc"
+    },
+    {
+      "path": "src/components/Sheet.tsx",
+      "bytes": 622,
+      "sha256": "0d22f9e08f20b82a58329545ce3d0d34490c72849fcaa5c1264b093d1dee680e"
+    },
+    {
+      "path": "src/components/TransferCustomerSheet.tsx",
+      "bytes": 1975,
+      "sha256": "1f3bab438db65ccd1b0c8a2a4bd252ed53ea4884cfbc738da9f6a3c89b36fba8"
+    },
+    {
+      "path": "src/components/UI.tsx",
+      "bytes": 1774,
+      "sha256": "89cb42dcf99437fc15a9b8d89e8ed4c4676a7f7eddc2f9371dbdb925a31c3871"
+    },
+    {
+      "path": "src/context/AuthContext.tsx",
+      "bytes": 2934,
+      "sha256": "c23d323a0697d09ce1861e357e678059db581d3708d5402e72f4180d9936e4f9"
+    },
+    {
+      "path": "src/lib/api.ts",
+      "bytes": 26713,
+      "sha256": "b1539ad6419f4ea9cd375b7636f6f8be7b639a6391da2b6401ab22c0f43b2908"
+    },
+    {
+      "path": "src/lib/config.ts",
+      "bytes": 685,
+      "sha256": "31b450b77ed014a25c121a5c78e65a707863f6f5025cd6c55b4e538c7e7d2fb6"
+    },
+    {
+      "path": "src/lib/demo.ts",
+      "bytes": 8668,
+      "sha256": "a729390b4175871f9fa54b75189de50338d9ef88185afeb08441185e417b99a8"
+    },
+    {
+      "path": "src/lib/format.ts",
+      "bytes": 1759,
+      "sha256": "8b43619c1b9c5097be2a042811d98af4e6c85d0bc10fd4717665637f719f1d0d"
+    },
+    {
+      "path": "src/lib/realtime.ts",
+      "bytes": 838,
+      "sha256": "06ebec69f5cd1b97ac09c6a18ea1cb60e34a235f47dc56fda6bf9a65492765a8"
+    },
+    {
+      "path": "src/lib/supabase.ts",
+      "bytes": 290,
+      "sha256": "2272548d5104e9251a9aaaa9d6b78f20ec2ad56358d9ab409c35bd07dbc74bc5"
+    },
+    {
+      "path": "src/lib/types.ts",
+      "bytes": 3929,
+      "sha256": "b63bac816904bd7eec119689255c1f6d020bab685b609161e81725696df2d6ed"
+    },
+    {
+      "path": "src/main.tsx",
+      "bytes": 787,
+      "sha256": "0d35f2e9ccd3c52f3720e7e80e8d08cb576be2d20a0253ce2ac3ef6e99eaefac"
+    },
+    {
+      "path": "src/pages/AdminPage.tsx",
+      "bytes": 5199,
+      "sha256": "371c9a65606310f135388352fa55a03a9cc299e790128b65b4045966eefceafa"
+    },
+    {
+      "path": "src/pages/CustomerDetailPage.tsx",
+      "bytes": 9432,
+      "sha256": "6b5f64c668e3362c2b857c3074c986906b8c737f817da60e379be6320c9d87d8"
+    },
+    {
+      "path": "src/pages/CustomersPage.tsx",
+      "bytes": 5299,
+      "sha256": "832b44ff1bfd31176cae1e36201c6cbf89055d0ebfcf64da3b4f243a67f3b31f"
+    },
+    {
+      "path": "src/pages/LoginPage.tsx",
+      "bytes": 1733,
+      "sha256": "2e5e248e7a065cd63b8bdd83276775800c1e37e5552ad61d592fc9f6cb5dcef7"
+    },
+    {
+      "path": "src/pages/ManagementPage.tsx",
+      "bytes": 2472,
+      "sha256": "b2337348b48f759fb2abdc7a7c5fede17982f4e19fe316f8dfd5c11c0a64ff69"
+    },
+    {
+      "path": "src/pages/NotFoundPage.tsx",
+      "bytes": 405,
+      "sha256": "412a6835fc25070693c1314c2789a3b569091af9e0f53d9cc5847b22978cd322"
+    },
+    {
+      "path": "src/pages/PipelinePage.tsx",
+      "bytes": 3669,
+      "sha256": "3ec9060b95a9df1243c1d731b55f6df2bfcad2d26997e2384a3bb4d33715ef4d"
+    },
+    {
+      "path": "src/pages/QuotesPage.tsx",
+      "bytes": 660,
+      "sha256": "4c14e858debb5d09026d1e25c44974068a84eb595095696af28cc7b075ff7b52"
+    },
+    {
+      "path": "src/pages/ReportsPage.tsx",
+      "bytes": 2004,
+      "sha256": "fa30dc8c73abf7761b4ab0fca11d92b2ae49c166eba7a56ed7d30c45ef6cb157"
+    },
+    {
+      "path": "src/pages/TasksPage.tsx",
+      "bytes": 4453,
+      "sha256": "babd274812014a8e4c903cbafa2fcf64f20b48b93af30c1acd7b7af1d448c5eb"
+    },
+    {
+      "path": "src/pages/TodayPage.tsx",
+      "bytes": 4040,
+      "sha256": "74af763f83f151de9c62a4fbd26d495548791ce854ebf13d2ffa598a4c0f2a12"
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 26248,
+      "sha256": "a0b9d0c1cf323d6c8ab8560f7d7f0a84ea3657f022ed82581c7e514dae0346c3"
+    },
+    {
+      "path": "src/vite-env.d.ts",
+      "bytes": 38,
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "tsconfig.app.json",
+      "bytes": 507,
+      "sha256": "a7266d1c85fa6947c70073256d9a73e4c459e97b0b4ef24b5c48dcab498ef4c5"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 119,
+      "sha256": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808"
+    },
+    {
+      "path": "tsconfig.node.json",
+      "bytes": 191,
+      "sha256": "843c35f20f6d101c456338994e7d3d0c8c94182fcc8b7378f1e096c7ed547234"
+    },
+    {
+      "path": "vite.config.d.ts",
+      "bytes": 76,
+      "sha256": "4b96dd19fd2949d28ce80e913412b0026dc421e5bf6c31d87c7b5eb11b5753b4"
+    },
+    {
+      "path": "vite.config.js",
+      "bytes": 193,
+      "sha256": "b9d5689a9544218a735827d18d9d243e2af70686ddf6d21a1fdb617f2c894286"
+    },
+    {
+      "path": "vite.config.ts",
+      "bytes": 185,
+      "sha256": "2f381fe58fc34d16f7acb1f4f94ba8f8e3433068b1ac47788b8dc9e970757de1"
+    }
+  ]
+}
