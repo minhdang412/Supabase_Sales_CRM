@@ -1,0 +1,9 @@
+-- Sau khi tạo user đầu tiên trong Authentication, thay UUID bên dưới.
+update public.profiles
+set organization_id='00000000-0000-0000-0000-000000000001',
+    department_id=null,
+    team_id=null,
+    role='admin',
+    status='active',
+    full_name=coalesce(full_name,'Quản trị viên')
+where id='<USER_UUID>'::uuid;

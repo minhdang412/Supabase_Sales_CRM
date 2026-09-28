@@ -1,0 +1,151 @@
+{
+  "generated_for": "Supabase Sales CRM v1.1.2 DEV continuation",
+  "file_count": 29,
+  "files": [
+    {
+      "path": "BOOTSTRAP_FIRST_ADMIN.sql.template",
+      "bytes": 330,
+      "sha256": "8cdad07e237c1a0e646bfa1112cb27eafc74bb5301fcf5e40cabbc230357ea50"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3442,
+      "sha256": "fa2e77ad75c5b891637daa7fd0bbc27f878b680f3b59eb14e89e3ef7a4e22b98"
+    },
+    {
+      "path": "SUPABASE_CRM_V1_FULL.sql",
+      "bytes": 107113,
+      "sha256": "65c296efdb510c157221a983f13e0f401301e1a1c53ce0d1bc45913c58cdc162"
+    },
+    {
+      "path": "docs/BOOTSTRAP_FIRST_ADMIN.md",
+      "bytes": 922,
+      "sha256": "ffb10708b9067542b9a21f3cae7c3a1eb8295a9747ae90173d416119c4fea54c"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PHASES.md",
+      "bytes": 811,
+      "sha256": "2c8a381a1e0d2ba18d9e1d48849503c1f5e3b7743802e7ab71412d8db7f80181"
+    },
+    {
+      "path": "docs/RLS_PERMISSION_MATRIX.md",
+      "bytes": 1349,
+      "sha256": "9f7e5bb5be8a9fc2e860011d8514bce2c183ebcdfc0309ff63c5f534efdb7687"
+    },
+    {
+      "path": "docs/TEST_CASES.md",
+      "bytes": 1745,
+      "sha256": "463d66775bacb8acc8bb514124f87a6cbd14773a426f1b40f2b4fa4dcbb58a7f"
+    },
+    {
+      "path": "docs/UI_UX_SPEC.md",
+      "bytes": 2084,
+      "sha256": "74df6c819e1e641e56e4b2b4c0da9cc48e7c9d73750aaba7f0f7cd9289cac9fb"
+    },
+    {
+      "path": "supabase/functions/_shared/admin.ts",
+      "bytes": 3007,
+      "sha256": "0a64d21397dd3af5baaff97c706a5690abd44eb01b803ad6ad0c00fb6b3ac09e"
+    },
+    {
+      "path": "supabase/functions/admin-create-user/index.ts",
+      "bytes": 1514,
+      "sha256": "111270a703a476d0a0e0d320c7691f5e450b350131884e005ec2c947e0b5e800"
+    },
+    {
+      "path": "supabase/functions/admin-lock-user/index.ts",
+      "bytes": 1198,
+      "sha256": "b841a2542453c8a91a4976e28dddd6eed26152a2a66c1587d772780109d59e28"
+    },
+    {
+      "path": "supabase/functions/admin-update-user/index.ts",
+      "bytes": 1944,
+      "sha256": "7bf0e7ab05350646d09f8e5d14d40cf3275fefe0e3f2b44715bb10f4a5e05ffa"
+    },
+    {
+      "path": "supabase/migrations/202609260001_extensions_types.sql",
+      "bytes": 1397,
+      "sha256": "74ded3fcbcf03c0c1266d0d88d480d5461f6b4c754553a24afec380876672e87"
+    },
+    {
+      "path": "supabase/migrations/202609260002_org_profiles.sql",
+      "bytes": 2276,
+      "sha256": "9f3792b06a3c487e65bc707142f920d6619f65abdb12716a4919355f6a6592e7"
+    },
+    {
+      "path": "supabase/migrations/202609260003_master_data.sql",
+      "bytes": 3021,
+      "sha256": "7f8472bbb109cab7d374e998d11eed03e60ceabb0991e42ec6c885807be12f1b"
+    },
+    {
+      "path": "supabase/migrations/202609260004_crm_tables.sql",
+      "bytes": 8986,
+      "sha256": "8b7fd6e9e2b1d54b295149cc2bb3d31b148c3c4662150333d27d6dd107cfb392"
+    },
+    {
+      "path": "supabase/migrations/202609260005_indexes.sql",
+      "bytes": 4172,
+      "sha256": "abaa422c5d586225953ecc98c1ae345e1b58e4d0a0d87ff9921e0255c7f03fb3"
+    },
+    {
+      "path": "supabase/migrations/202609260006_helpers_rls.sql",
+      "bytes": 21402,
+      "sha256": "88a6940f7485074360cccb70c2ed1eedcedec8b01cd21ab583b98377450366a6"
+    },
+    {
+      "path": "supabase/migrations/202609260007_triggers.sql",
+      "bytes": 5586,
+      "sha256": "a482c42b71db6fdb57518a05be4629e242c87fa79e5ac1506e41cbca5ea3f2eb"
+    },
+    {
+      "path": "supabase/migrations/202609260008_rpc.sql",
+      "bytes": 32220,
+      "sha256": "5fa2b2eebeb69cdc2bcf881abb9fd5a69c66e77b073ad7fa2d6b2cd6276fdbd1"
+    },
+    {
+      "path": "supabase/migrations/202609260009_views.sql",
+      "bytes": 1143,
+      "sha256": "2bf9d4e36bd814a8db1a9cb7982b4bafa15647581608b7090d4095239bc75ce5"
+    },
+    {
+      "path": "supabase/migrations/202609260010_storage.sql",
+      "bytes": 1853,
+      "sha256": "ff976947df85d5d2cf966988eb3e6c32a20cae780a6c3e5a3cb92e9d912b9241"
+    },
+    {
+      "path": "supabase/migrations/202609260011_seed_master_data.sql",
+      "bytes": 6724,
+      "sha256": "b7cf646039d84b6e4218bca864d94c95d255a747a458b7fa0a68e2faa3f3bd16"
+    },
+    {
+      "path": "supabase/migrations/202609260012_hardening_utilities.sql",
+      "bytes": 6542,
+      "sha256": "50a58e95012c2ab1e081593af28000a3ea5e754498381ffa872fa633fe247594"
+    },
+    {
+      "path": "supabase/migrations/202609270013_customer_filters.sql",
+      "bytes": 4276,
+      "sha256": "0bf9bbf13fe3f58d429f4df73409a59d94bf23daf3add58fdf1e1a98321f27fa"
+    },
+    {
+      "path": "supabase/migrations/202609270014_customer_name_search_fix.sql",
+      "bytes": 4354,
+      "sha256": "f0fb1745da57e3691d963fd8cc06b6fbbd386e31d2d48444d7754b5ebe06e8d8"
+    },
+    {
+      "path": "supabase/migrations/202609270015_locked_notifications.sql",
+      "bytes": 614,
+      "sha256": "37421af6c0f639b6ffb4707396b44e69a2f7d4a12d9e9dde12230f49f91bacbd"
+    },
+    {
+      "path": "supabase/migrations/202609270016_quote_sent_idempotent.sql",
+      "bytes": 1696,
+      "sha256": "9b2048bff90f7b8dd4dd03ecafe4b0ebe998b584cade1f63254b8de8bfe6c69c"
+    },
+    {
+      "path": "supabase/seed.sql",
+      "bytes": 172,
+      "sha256": "be39b90e3389b06bdab41d272127ba1ee3db072153999ead30467475e8c7050d"
+    }
+  ]
+}

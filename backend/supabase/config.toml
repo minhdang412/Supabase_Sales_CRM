@@ -1,0 +1,2 @@
+# Local CLI project identifier. Remote project is selected by `supabase link`.
+project_id = "sales_crm_v1"
