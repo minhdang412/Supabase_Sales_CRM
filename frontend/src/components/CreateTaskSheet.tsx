@@ -1,0 +1,13 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
+import { createTask, getMasterData } from '../lib/api'
+import { Button } from './UI'
+import { Sheet } from './Sheet'
+
+const defaultDate=()=>{const d=new Date();d.setDate(d.getDate()+1);d.setHours(9,0,0,0);return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16)}
+export function CreateTaskSheet({open,onClose,customerId,opportunityId}:{open:boolean;onClose:()=>void;customerId?:string;opportunityId?:string}){
+ const{profile}=useAuth();const master=useQuery({queryKey:['master'],queryFn:getMasterData,enabled:open});const[type,setType]=useState('');const[title,setTitle]=useState('');const[note,setNote]=useState('');const[due,setDue]=useState(defaultDate());const[priority,setPriority]=useState<'normal'|'high'>('normal');const[busy,setBusy]=useState(false);const[err,setErr]=useState('');const qc=useQueryClient()
+ const save=async()=>{if(!profile||!type)return;setBusy(true);setErr('');try{await createTask({assignedUserId:profile.id,taskTypeId:type,customerId,opportunityId,title,note,dueAt:new Date(due).toISOString(),priority});await Promise.all([qc.invalidateQueries({queryKey:['tasks']}),qc.invalidateQueries({queryKey:['today']}),qc.invalidateQueries({queryKey:['customer']})]);onClose();setTitle('');setNote('')}catch(e){setErr(e instanceof Error?e.message:'Không thể tạo công việc')}finally{setBusy(false)}}
+ return <Sheet open={open} onClose={onClose} title="Tạo công việc"><div className="form-stack"><label>Loại công việc<select value={type} onChange={e=>setType(e.target.value)}><option value="">Chọn loại</option>{master.data?.taskTypes.map(x=><option key={x.id} value={x.id}>{x.display_name}</option>)}</select></label><label>Tiêu đề<input value={title} onChange={e=>setTitle(e.target.value)} placeholder="Nếu bỏ trống sẽ dùng tên loại công việc"/></label><label>Thời gian<input type="datetime-local" value={due} onChange={e=>setDue(e.target.value)}/></label><fieldset><legend>Mức ưu tiên</legend><div className="choice-grid"><button type="button" className={priority==='normal'?'selected':''} onClick={()=>setPriority('normal')}>Bình thường</button><button type="button" className={priority==='high'?'selected':''} onClick={()=>setPriority('high')}>Cao</button></div></fieldset><label>Ghi chú<textarea rows={3} value={note} onChange={e=>setNote(e.target.value)}/></label>{master.isError&&<div className="form-error">Không tải được loại công việc: {master.error.message}</div>}{err&&<div className="form-error">{err}</div>}<Button disabled={!type||busy||master.isError} onClick={save}>{busy?'Đang tạo...':'Tạo công việc'}</Button></div></Sheet>
+}
