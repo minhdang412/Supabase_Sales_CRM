@@ -485,6 +485,7 @@
 }
 
 @media (max-width: 1023px) {
+  .topbar-add-customer { display:none !important; }
   .today-topbar .topbar-actions > .avatar { display:grid; border-radius:999px; background:#047857; color:white; }
   .today-topbar .topbar-action { border:0; }
   .today-desktop-extra, .today-hero-mark, .today-hero-tail, .today-hero-desktop, .today-hero-filter, .today-hero-create { display:none !important; }
@@ -499,6 +500,9 @@
   .today-scope button { padding:6px; }
   .today-scope button svg { display:none; }
   .today-hero-controls { justify-content:flex-end; }
+  .today-hero:has(.today-scope) { flex-wrap:wrap; }
+  .today-hero:has(.today-scope) .today-hero-copy { flex-basis:100%; }
+  .today-hero:has(.today-scope) .today-hero-controls { width:100%; justify-content:space-between; }
   .today-mobile-intro { margin:10px 0 12px; color:#475569; font-size:13px; line-height:20px; }
   .today-mobile-intro strong { color:#e11d48; }
   .today-mobile-intro b { color:#0369a1; }
