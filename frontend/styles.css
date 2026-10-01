@@ -1,0 +1,427 @@
+@import "tailwindcss";
+
+@layer base {
+  :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0f172a; background: #f8fafc; font-synthesis: none; }
+  * { box-sizing: border-box; }
+  body { min-width: 320px; min-height: 100vh; margin: 0; }
+  button, input, select, textarea { font: inherit; }
+  button { cursor: pointer; }
+  a { text-decoration: none; }
+  h1, h2, h3, p { margin-top: 0; }
+  :focus-visible { outline-color: #10b981; outline-offset: 2px; }
+}
+
+@layer components {
+  .app-shell { @apply min-h-screen bg-slate-50; }
+  .sidebar { @apply fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200 bg-white px-4 py-6 lg:flex; }
+  .brand { @apply mb-9 flex items-center gap-3 px-2; }
+  .brand-mark, .login-logo { @apply grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-600 text-white shadow-sm shadow-emerald-200; }
+  .brand strong { @apply block text-base font-semibold tracking-tight text-slate-900; }
+  .brand span { @apply mt-0.5 block text-xs text-slate-400; }
+  .sidebar-section-label { @apply mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-slate-400; }
+  .sidebar nav { @apply flex flex-col gap-1; }
+  .sidebar nav a { @apply flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-900 active:scale-[0.98]; }
+  .sidebar nav a.active { @apply bg-emerald-50 font-semibold text-emerald-700; }
+  .sidebar nav a.active svg { @apply text-emerald-600; }
+  .sidebar-spacer { @apply flex-1; }
+  .notification-button { @apply mb-3 flex min-h-11 w-full items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 text-left text-sm font-medium text-slate-600 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .notification-button b { @apply ml-auto grid h-5 min-w-5 place-items-center rounded-full bg-emerald-600 px-1 text-[10px] text-white; }
+  .sidebar-user { @apply flex items-center gap-2.5 border-t border-slate-200 pt-4; }
+  .sidebar-user .grow { @apply min-w-0; }
+  .sidebar-user strong { @apply block truncate text-sm font-semibold text-slate-800; }
+  .sidebar-user span { @apply block truncate text-xs text-slate-400; }
+  .avatar { @apply grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-50 text-sm font-semibold text-emerald-700; }
+  .avatar.soft { @apply h-11 w-11 rounded-2xl; }
+  .icon-btn { @apply grid h-9 w-9 shrink-0 place-items-center rounded-lg text-slate-400 transition-all duration-150 hover:bg-slate-100 hover:text-slate-700 active:scale-95; }
+  .main { @apply min-h-screen lg:ml-64; }
+  .topbar { @apply sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 backdrop-blur-sm sm:px-7 lg:px-9; }
+  .topbar-label { @apply text-xs font-medium text-slate-400; }
+  .topbar-actions { @apply flex items-center gap-2; }
+  .topbar-action { @apply relative grid h-9 w-9 place-items-center rounded-xl border border-slate-200 text-slate-600 transition-all duration-150 hover:bg-slate-50 active:scale-95; }
+  .topbar-count { @apply absolute -right-1 -top-1 grid h-4 min-w-4 place-items-center rounded-full bg-emerald-600 px-0.5 text-[9px] text-white; }
+  .page { @apply mx-auto max-w-[1440px] px-4 pb-32 pt-7 sm:px-7 sm:pt-9 lg:px-9 lg:pb-16; }
+  .grow { @apply min-w-0 flex-1; }
+  .btn-secondary { @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-150 hover:border-slate-300 hover:bg-slate-50 active:scale-[0.98]; }
+  button.badge-info { @apply inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700; }
+  .status-message.warning { @apply rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-5 text-amber-800; }
+  .action-row { @apply flex flex-wrap items-center gap-2; }
+  .stack { @apply grid gap-3; }
+  .section-title { @apply mb-4 mt-9 flex flex-wrap items-center justify-between gap-2; }
+  .section-title h2 { @apply flex items-center gap-2 text-base font-semibold tracking-tight text-slate-900 sm:text-lg; }
+  .section-title > span { @apply text-xs font-medium text-slate-400; }
+  .section-title svg { @apply h-5 w-5 text-slate-500; }
+  .demo-bar { @apply flex min-h-9 items-center justify-center gap-3 border-b border-amber-200 bg-amber-50 px-4 text-xs font-medium text-amber-800; }
+  .demo-bar select { @apply rounded-md border border-amber-200 bg-white px-2 py-1 text-xs; }
+  .bottom-nav { @apply fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-slate-200 bg-white px-1 pb-[env(safe-area-inset-bottom)] shadow-sm lg:hidden; min-height: calc(66px + env(safe-area-inset-bottom)); }
+  .bottom-nav a, .bottom-nav button { @apply flex flex-col items-center justify-center gap-1 bg-transparent py-2 text-[10px] font-medium text-slate-400 transition-all duration-150 active:scale-95; }
+  .bottom-nav a.active, .bottom-nav button.active { @apply text-emerald-700; }
+  .bottom-nav svg { @apply h-5 w-5; stroke-width: 1.75; }
+
+  .stats-grid { @apply grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4; }
+  .stats-grid .card { @apply relative flex min-h-36 flex-col justify-between overflow-hidden p-5 sm:p-6; }
+  .stats-grid .card::after { content: ""; @apply absolute right-5 top-5 h-2 w-2 rounded-full bg-emerald-500; }
+  .stats-grid .card.stat-warn::after { @apply bg-rose-400; }
+  .stats-grid span, .admin-summary span { @apply text-[11px] font-semibold uppercase tracking-wider text-slate-400; }
+  .stats-grid strong { @apply text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl; }
+  .stat-warn { @apply border-rose-100 bg-rose-50/40; }
+  .task-card { @apply flex flex-wrap items-center gap-3 border-slate-200/80 p-4 sm:flex-nowrap sm:p-5; }
+  .task-card.overdue { @apply border-l-[3px] border-l-rose-400; }
+  .task-card .grow { @apply flex min-w-[160px] flex-col gap-1; }
+  .task-card .grow strong { @apply text-sm font-semibold text-slate-800; }
+  .task-card .grow span { @apply text-xs text-slate-400; }
+  .task-time { @apply w-16 shrink-0 text-sm font-semibold tabular-nums text-slate-700; }
+  .task-icon { @apply grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-slate-100 text-slate-500; }
+  .lead-grid { @apply grid gap-4 md:grid-cols-2; }
+  .lead-card { @apply flex flex-col justify-between gap-5 p-6 sm:flex-row sm:items-end; }
+  .lead-card h3 { @apply mb-1 mt-3 text-lg font-semibold tracking-tight text-slate-900; }
+  .lead-card p { @apply mb-0 text-xs text-slate-500; }
+  .sla { @apply mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-rose-700; }
+  .segmented { @apply inline-flex rounded-xl border border-slate-200 bg-slate-100 p-1; }
+  .segmented button { @apply rounded-lg px-4 py-2 text-xs font-semibold text-slate-500 transition-all duration-150 hover:text-slate-900 active:scale-[0.98]; }
+  .segmented button.active { @apply bg-white text-emerald-700 shadow-sm; }
+  .segmented.three { @apply grid grid-cols-3; }
+
+  .search-row { @apply mb-4 flex gap-3; }
+  .searchbox { @apply flex min-h-12 flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 text-slate-400 shadow-sm focus-within:border-emerald-300 focus-within:ring-4 focus-within:ring-emerald-50; }
+  .searchbox input { @apply w-full min-w-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400; }
+  .chips { @apply mb-5 flex gap-2 overflow-x-auto pb-2; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips button { @apply shrink-0 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-medium text-slate-600 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .chips button.active { @apply border-emerald-200 bg-emerald-50 font-semibold text-emerald-700; }
+  .filter-active { @apply border-emerald-200 bg-emerald-50 text-emerald-700; }
+  .customer-list { @apply grid gap-3; }
+  .customer-card { @apply flex items-center justify-between gap-4 p-4 sm:p-5; }
+  .customer-main { @apply flex min-w-0 items-center gap-3 sm:gap-4; }
+  .customer-main .grow { @apply flex min-w-0 flex-col gap-1.5; }
+  .customer-main strong { @apply truncate text-sm font-semibold text-slate-900 sm:text-base; }
+  .customer-main .grow > span { @apply truncate text-xs text-slate-500 sm:text-sm; }
+  .customer-side { @apply hidden shrink-0 flex-col items-end gap-2 text-right sm:flex; }
+  .customer-side > span { @apply text-[10px] font-medium uppercase tracking-wider text-slate-400; }
+  .customer-side strong { @apply text-xs font-semibold text-slate-600; }
+  .meta-row { @apply flex flex-wrap items-center gap-1.5; }
+  .back-link { @apply mb-5 inline-flex items-center gap-2 rounded-lg px-1 py-1 text-xs font-semibold text-slate-500 transition-colors hover:text-emerald-700; }
+  .tabs { @apply mb-6 flex gap-6 overflow-x-auto border-b border-slate-200; }
+  .tabs button { @apply shrink-0 border-b-2 border-transparent px-1 pb-3 pt-1 text-sm font-medium text-slate-400 transition-all duration-150 hover:text-slate-700 active:scale-[0.98]; }
+  .tabs button.active { @apply border-emerald-600 font-semibold text-emerald-700; }
+  .detail-grid { @apply grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(280px,0.85fr)]; }
+  .card-head { @apply mb-5 flex flex-wrap items-center justify-between gap-2; }
+  .card h2 { @apply text-base font-semibold tracking-tight text-slate-900; }
+  .opp-title { @apply mb-5 flex flex-wrap items-start justify-between gap-4; }
+  .opp-title > div > strong { @apply mb-2 block text-xl font-semibold tracking-tight text-slate-900; }
+  .info-rows { @apply divide-y divide-slate-100 border-y border-slate-100; }
+  .info-rows > div { @apply grid grid-cols-[110px_minmax(0,1fr)_16px] items-center gap-2 py-3.5 transition-colors hover:bg-slate-50 sm:grid-cols-[135px_minmax(0,1fr)_16px]; }
+  .info-rows span { @apply text-xs text-slate-400; }
+  .info-rows strong { @apply min-w-0 truncate text-sm font-medium text-slate-700; }
+  .info-rows svg { @apply h-4 w-4 text-slate-300; }
+  .opp-actions { @apply mt-5 flex flex-wrap gap-2; }
+  .contact-list { @apply divide-y divide-slate-100; }
+  .contact-list > div { @apply flex flex-wrap justify-between gap-2 py-3 text-sm; }
+  .contact-list span { @apply capitalize text-slate-400; }
+  .contact-list strong { @apply font-medium text-slate-700; }
+  .mini-task { @apply flex items-center justify-between gap-3 border-t border-slate-100 py-3; }
+  .mini-task div { @apply flex flex-col gap-1; }
+  .mini-task strong { @apply text-sm font-medium text-slate-700; }
+  .mini-task span, .muted { @apply text-xs text-slate-400; }
+  .note-text { @apply text-sm leading-7 text-slate-600; }
+  .timeline { @apply mt-2; }
+  .timeline-item { @apply relative grid grid-cols-[16px_1fr] gap-3 pb-6; }
+  .timeline-item::before { content: ""; @apply absolute bottom-0 left-[5px] top-4 w-px bg-slate-200; }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-dot { @apply relative z-10 mt-1 h-3 w-3 rounded-full border-[3px] border-emerald-100 bg-emerald-500; }
+  .timeline-item div:last-child { @apply flex flex-col gap-1; }
+  .timeline-item span { @apply text-xs text-slate-400; }
+  .timeline-item strong { @apply text-sm font-semibold text-slate-700; }
+  .timeline-item p { @apply mt-1 text-sm text-slate-600; }
+  .quote-card, .quote-row { @apply flex flex-wrap items-center justify-between gap-4; }
+  .quote-card > div { @apply flex flex-col gap-2; }
+  .price { @apply text-2xl font-semibold tracking-tight text-slate-900; }
+  .quote-note { @apply mt-2 border-t border-slate-100 pt-3 text-sm leading-6 text-slate-500; }
+  .clickable { @apply cursor-pointer transition-all hover:bg-emerald-50 active:scale-[0.98] disabled:cursor-default; }
+
+  .pipeline-browser { @apply grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)]; }
+  .pipeline-stage-panel { @apply sticky top-24 hidden h-fit rounded-2xl border border-slate-200 bg-white p-2 shadow-sm lg:grid; }
+  .pipeline-stage-panel-title { @apply flex items-center gap-2 px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400; }
+  .pipeline-stage-panel > button { @apply flex w-full items-center justify-between gap-2 rounded-xl px-3 py-3 text-left text-sm font-medium text-slate-500 transition-all duration-150 hover:bg-slate-50 hover:text-slate-800 active:scale-[0.98]; }
+  .pipeline-stage-panel > button.active { @apply bg-emerald-50 font-semibold text-emerald-700; }
+  .pipeline-stage-panel b { @apply grid min-w-6 place-items-center rounded-full bg-slate-100 px-1.5 py-1 text-[10px] font-semibold text-slate-500; }
+  .pipeline-stage-panel > button.active b { @apply bg-white text-emerald-700; }
+  .pipeline-content { @apply min-w-0; }
+  .pipeline-stage-scroll { @apply mb-5 flex gap-2 overflow-x-auto pb-1 lg:hidden; scrollbar-width: none; }
+  .pipeline-stage-scroll::-webkit-scrollbar { display: none; }
+  .pipeline-stage-scroll button { @apply shrink-0 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-500 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .pipeline-stage-scroll button.active { @apply border-emerald-200 bg-emerald-50 font-semibold text-emerald-700; }
+  .pipeline-stage-scroll b { @apply ml-1 text-[10px]; }
+  .pipeline-content-head { @apply mb-4 flex items-end justify-between gap-3; }
+  .pipeline-content-head h2 { @apply mb-1 text-lg font-semibold tracking-tight text-slate-900; }
+  .pipeline-content-head p { @apply text-xs text-slate-400; }
+  .pipeline-list { @apply grid gap-3 xl:grid-cols-2; }
+  .pipeline-row { @apply flex items-center justify-between gap-4 p-5; }
+  .pipeline-row-main { @apply grid min-w-0 gap-1.5; }
+  .pipeline-row-main > strong { @apply truncate text-base font-semibold text-slate-900; }
+  .pipeline-row-main > span { @apply text-xs text-slate-400; }
+  .pipeline-open-icon { @apply shrink-0 text-slate-300; }
+
+  .report-grid { @apply grid gap-4 xl:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.6fr)]; }
+  .report-grid .wide { @apply min-w-0; }
+  .funnel { @apply grid gap-4; }
+  .funnel > div > div:first-child { @apply flex justify-between gap-2 text-sm text-slate-600; }
+  .funnel strong { @apply font-semibold text-slate-900; }
+  .bar { @apply mt-2 h-2 overflow-hidden rounded-full bg-slate-100; }
+  .bar i { @apply block h-full rounded-full bg-emerald-500; }
+  .table-wrap { @apply overflow-x-auto; }
+  table { @apply w-full border-collapse text-sm; }
+  th, td { @apply whitespace-nowrap border-b border-slate-100 px-4 py-3.5 text-left; }
+  th { @apply bg-slate-50 text-[10px] font-semibold uppercase tracking-wider text-slate-400; }
+  td { @apply text-slate-600; }
+  tbody tr { @apply transition-colors duration-150 hover:bg-slate-50; }
+  .date-range { @apply flex items-center gap-2 text-slate-400; }
+  .date-range input { @apply min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-xs text-slate-600 outline-none focus:border-emerald-300; }
+
+  .admin-summary { @apply mb-6 grid grid-cols-2 gap-3 sm:max-w-xl; }
+  .admin-summary .card { @apply flex items-center gap-4; }
+  .admin-summary .card > svg { @apply h-5 w-5 text-emerald-600; }
+  .admin-summary .card > div { @apply flex flex-col gap-2; }
+  .admin-summary strong { @apply text-2xl font-semibold text-slate-900; }
+  .user-row { @apply flex flex-wrap items-center gap-3 sm:flex-nowrap; }
+  .user-row .grow { @apply grid gap-1; }
+  .user-row strong { @apply text-sm font-semibold text-slate-900; }
+  .user-row .grow > span { @apply text-xs text-slate-500; }
+  .row-actions { @apply ml-auto flex gap-2; }
+  .duplicate-records { @apply mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3; }
+  .duplicate-records > div { @apply grid gap-1 rounded-xl bg-slate-50 p-3; }
+  .duplicate-records span { @apply text-xs text-slate-400; }
+  .duplicate-head h3 { @apply my-1 text-lg font-semibold text-slate-900; }
+  .duplicate-head span { @apply text-xs text-slate-400; }
+
+  .schedule-week { @apply grid gap-3 md:grid-cols-2 xl:grid-cols-3; }
+  .schedule-day h3 { @apply mb-3 text-sm font-semibold text-slate-800; }
+  .schedule-block { @apply grid grid-cols-[84px_1fr] gap-3 border-t border-slate-100 py-3 text-xs; }
+  .schedule-block span { @apply font-medium tabular-nums text-slate-400; }
+  .schedule-block strong { @apply font-medium text-slate-700; }
+
+  .sheet-overlay { @apply fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 sm:items-center sm:p-5; }
+  .sheet { @apply max-h-[90vh] w-full overflow-y-auto rounded-t-2xl bg-white shadow-xl shadow-slate-900/10 sm:max-w-xl sm:rounded-2xl; }
+  .sheet-handle { @apply mx-auto mt-2 h-1 w-10 rounded-full bg-slate-200 sm:hidden; }
+  .sheet > header { @apply sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-5 py-4 sm:px-6; }
+  .sheet h2 { @apply text-lg font-semibold tracking-tight text-slate-900; }
+  .sheet-body { @apply px-5 pb-7 pt-5 sm:px-6; }
+  .form-stack { @apply grid gap-4; }
+  .form-stack label { @apply grid gap-1.5 text-xs font-semibold text-slate-600; }
+  .form-stack input, .form-stack select, .form-stack textarea,
+  .config-row input, .config-row-head input, .variant-row input { @apply w-full min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-normal text-slate-800 outline-none transition-colors placeholder:text-slate-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-50; }
+  .form-stack textarea { @apply resize-y; }
+  .form-stack fieldset { @apply border-0 p-0; }
+  .form-stack legend { @apply mb-2 text-xs font-semibold text-slate-600; }
+  .form-error { @apply rounded-xl border border-rose-200 bg-rose-50 px-3 py-2.5 text-xs leading-5 text-rose-700; }
+  .form-hint { @apply text-center text-xs leading-5 text-slate-400; }
+  .choice-grid, .filter-sheet-actions, .two-col { @apply grid grid-cols-2 gap-2; }
+  .choice-grid button, .option-list button { @apply rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-left text-sm text-slate-600 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .choice-grid button.selected, .option-list button.selected { @apply border-emerald-200 bg-emerald-50 font-semibold text-emerald-700; }
+  .option-list { @apply grid gap-2; }
+  .option-list button { @apply flex items-center justify-between; }
+  .option-list button b { @apply text-[10px]; }
+  .form-stack .checkline, .config-row .checkline, .config-row-head .checkline, .variant-row .checkline { @apply flex flex-row items-center gap-2; }
+  .form-stack .checkline input, .config-row .checkline input, .config-row-head .checkline input, .variant-row .checkline input { @apply h-4 w-4 shrink-0 rounded border-slate-300 p-0 accent-emerald-600; }
+  .menu-list { @apply grid gap-1; }
+  .menu-list button { @apply flex items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium text-slate-600 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .menu-list svg { @apply h-5 w-5 text-slate-400; stroke-width: 1.75; }
+  .notification-list { @apply grid gap-2; }
+  .notification-item { @apply flex w-full gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .notification-item.unread { @apply border-emerald-200 bg-emerald-50/50; }
+  .notification-icon { @apply grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-700; }
+  .notification-copy { @apply grid gap-1; }
+  .notification-copy strong { @apply text-sm text-slate-800; }
+  .notification-copy > span { @apply text-xs text-slate-500; }
+  .notification-copy small { @apply text-[11px] text-slate-400; }
+
+  .master-config { @apply mt-10 grid gap-7; }
+  .config-list { @apply grid gap-3; }
+  .config-row { @apply grid items-end gap-3 md:grid-cols-[minmax(180px,1fr)_90px_110px_auto_auto_auto]; }
+  .config-row.simple { @apply md:grid-cols-[minmax(220px,1fr)_110px_auto_auto]; }
+  .config-row.care { @apply md:grid-cols-[minmax(160px,1fr)_130px_auto_auto]; }
+  .config-row > div, .config-row label, .config-row-head > div, .config-row-head label { @apply grid gap-1 text-xs text-slate-500; }
+  .config-row small, .config-row-head small { @apply text-[10px] font-semibold uppercase tracking-wider text-slate-400; }
+  .config-row-head { @apply grid items-end gap-3 md:grid-cols-[minmax(220px,1fr)_110px_auto_auto]; }
+  .variant-list { @apply mt-4 grid gap-2 border-l-2 border-slate-100 pl-4; }
+  .variant-row { @apply grid items-center gap-2 sm:grid-cols-[minmax(120px,1fr)_minmax(120px,0.8fr)_auto_36px]; }
+  .add-inline { @apply flex w-fit items-center gap-1.5 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:text-emerald-800; }
+  .coming-soon-card { @apply grid min-h-80 place-content-center justify-items-center px-8 py-12 text-center; }
+  .coming-soon-icon { @apply grid h-14 w-14 place-items-center rounded-2xl bg-emerald-50 text-emerald-700; }
+  .coming-soon-card strong { @apply mt-5 text-xl font-semibold tracking-tight text-slate-900; }
+  .coming-soon-card p { @apply mb-0 mt-2 max-w-lg text-sm leading-7 text-slate-500; }
+
+  .login-page { @apply grid min-h-screen place-items-center bg-slate-50 p-5; }
+  .login-card { @apply w-full max-w-md rounded-2xl border border-slate-200 bg-white p-7 shadow-sm shadow-slate-100 sm:p-9; }
+  .login-logo { @apply mb-7 h-12 w-12; }
+  .login-card h1 { @apply mb-1 text-2xl font-semibold tracking-tight text-slate-900; }
+  .login-card > p { @apply mb-7 text-sm text-slate-500; }
+  .demo-login { @apply mb-5 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800; }
+  .app-loading, .locked { @apply grid min-h-screen place-items-center text-sm text-slate-500; }
+}
+
+@media (max-width: 1023px) {
+  .task-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "main main" "meta action"; gap: 10px 12px; }
+  .task-card:has(.task-time) { grid-template-areas: "time time" "main main" "meta action"; }
+  .task-card .task-time { grid-area: time; }
+  .task-card .grow { grid-area: main; min-width: 0; }
+  .task-card > .badge { grid-area: meta; justify-self: start; }
+  .task-card > .btn { grid-area: action; align-self: center; }
+  .task-card .task-icon { display: none; }
+  .task-card > .btn { justify-self: end; }
+  .pipeline-row-main .meta-row > .badge:first-child { flex-basis: 100%; width: fit-content; }
+  .pipeline-row-main .meta-row > .badge:not(:first-child) { white-space: nowrap; }
+  .customer-quick-filters, .pipeline-stage-scroll { padding-right: 24px; mask-image: linear-gradient(to right, #000 0%, #000 94%, transparent 100%); }
+  .date-range { width: 100%; }
+  .date-range input { min-width: 0; flex: 1; }
+  .row-actions { width: 100%; justify-content: flex-end; }
+  .admin-summary .card { padding: 14px; }
+  .admin-summary strong { font-size: 23px; }
+  .search-row .btn { padding: 9px 11px; }
+}
+@media (max-width: 480px) {
+  .task-card > .btn { min-width: 90px; padding: 9px; }
+  .customer-main .avatar { display: none; }
+  .two-col { grid-template-columns: 1fr; }
+  .opp-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .opp-actions .btn:last-child { grid-column: 1 / -1; }
+}
+
+/* Stitch design system: compact, exception-first automotive CRM. */
+@layer components {
+  .app-shell, .login-page { background: #f8fafc; }
+  .topbar { @apply border-slate-200 bg-white/95 shadow-sm; }
+  .topbar .brand-mark { @apply h-9 w-9 rounded-xl; }
+  .bottom-nav { @apply border-slate-200 bg-white/95 shadow-[0_-4px_16px_rgba(15,23,42,0.06)] backdrop-blur-xl; }
+  .bottom-nav a.active, .bottom-nav button.active { @apply font-semibold text-emerald-800; }
+  .page-title { @apply mb-5 gap-3 pb-4; }
+  .page-title h1 { @apply leading-tight; }
+  .page-title p:last-child { @apply leading-5; }
+  .card { @apply border-slate-200 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.04)]; }
+  .section-title { @apply mb-3 mt-6; }
+  .section-title h2 { @apply text-slate-900; }
+  .stats-grid .card { @apply min-h-28 p-4; }
+  .stats-grid strong { @apply text-3xl; }
+  .stats-grid .card.stat-warn { @apply border-rose-200 bg-rose-50; }
+  .today-focus { @apply mb-4 flex flex-wrap items-end justify-between gap-4 rounded-2xl bg-emerald-800 px-5 py-5 text-white shadow-sm sm:px-6; }
+  .today-focus > div { @apply grid gap-1; }
+  .today-focus p { @apply mb-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-100; }
+  .today-focus strong { @apply text-2xl font-semibold tracking-tight; }
+  .today-focus span { @apply text-xs text-emerald-100; }
+  .today-focus .btn { @apply border-emerald-200 bg-white text-emerald-800; }
+  .lead-card { @apply border-l-[3px] border-l-emerald-500 p-4; }
+  .task-card { @apply border-l-[3px] border-l-slate-200; }
+  .task-card.overdue { @apply border-l-rose-500 bg-rose-50/40; }
+  .task-card .grow strong { @apply text-sm leading-5; overflow-wrap: anywhere; }
+  .task-card > .btn { @apply min-h-9 text-xs; }
+  .customer-list { @apply gap-2.5; }
+  .customer-card { @apply relative grid gap-3 border-l-[3px] border-l-transparent px-4 py-3.5; }
+  .customer-card-hot { @apply border-l-rose-500; }
+  .customer-card-attention { @apply border-l-amber-400; }
+  .customer-card-head { @apply flex min-w-0 items-center justify-between gap-3; }
+  .customer-main { @apply min-w-0 flex-1; }
+  .customer-main .grow { @apply min-w-0; }
+  .customer-main strong { @apply block text-sm font-semibold leading-5; overflow-wrap: anywhere; }
+  .customer-main .grow > span { @apply block text-xs text-slate-500; }
+  .customer-card .meta-row { @apply pl-0 sm:pl-14; }
+  .customer-vehicle { @apply flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-xs font-semibold text-slate-700 sm:ml-14; }
+  .customer-vehicle svg { @apply shrink-0 text-emerald-700; }
+  .customer-card-foot { @apply flex flex-wrap gap-x-4 gap-y-1.5 border-t border-slate-100 pt-2 text-[11px] font-medium text-slate-500 sm:ml-14; }
+  .customer-card-foot span { @apply inline-flex items-center gap-1.5; }
+  .customer-card-foot .needs-task { @apply text-amber-700; }
+  .customer-card .avatar { @apply rounded-full; }
+  .pipeline-list { @apply gap-2.5; }
+  .pipeline-row { @apply border-l-[3px] border-l-emerald-300 px-4 py-3.5; }
+  .pipeline-row-hot { @apply border-l-rose-500; }
+  .pipeline-row-main { @apply w-full gap-2; }
+  .pipeline-row-title { @apply flex min-w-0 items-center gap-3; }
+  .pipeline-row-title > div { @apply min-w-0 flex-1; }
+  .pipeline-row-title strong { @apply block text-sm font-semibold text-slate-900; overflow-wrap: anywhere; }
+  .pipeline-row-title span:not(.avatar) { @apply block text-xs text-slate-500; }
+  .pipeline-row-title .avatar { @apply h-9 w-9 rounded-full; }
+  .pipeline-row-main .meta-row { @apply border-t border-slate-100 pt-2; }
+  .pipeline-content-head { @apply mb-3; }
+  .pipeline-open-icon { @apply hidden; }
+  .chips button, .pipeline-stage-scroll button { @apply min-h-10; }
+  .login-card { @apply border-slate-200 shadow-[0_12px_36px_rgba(15,23,42,0.07)]; }
+  .login-hero { @apply mb-6 flex items-center gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-4; }
+  .login-hero .login-logo { @apply mb-0 h-10 w-10; }
+  .login-hero strong { @apply block text-base font-semibold text-slate-900; }
+  .login-hero span { @apply block text-xs text-slate-500; }
+  .sheet { @apply shadow-[0_-4px_16px_rgba(15,23,42,0.12)]; }
+  .notification-item.unread { @apply border-l-[3px] border-l-emerald-600; }
+}
+@media (max-width: 1023px) {
+  .page { @apply px-4 pt-4; }
+  .page-title { @apply mb-4; }
+  .page-title h1 { font-size: 24px; }
+  .page-title .page-actions { @apply w-full; }
+  .page-title .page-actions > .btn { @apply w-full; }
+  .customer-card .avatar { display: grid; }
+  .pipeline-row-main .meta-row > .badge:first-child { flex-basis: auto; }
+}
+
+/* Stitch Today: compact mobile sales assistant, backed by the live dashboard. */
+@layer components {
+  .today-page { @apply max-w-[1100px] pt-5 sm:pt-8; }
+  .today-header { @apply mb-3 flex flex-wrap items-end justify-between gap-2; }
+  .today-header h1 { @apply mb-0 text-[25px] font-semibold tracking-tight text-slate-900 sm:text-3xl; }
+  .today-eyebrow { @apply mb-1.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-800; }
+  .today-online-dot { @apply h-2 w-2 rounded-full bg-emerald-600; }
+  .today-date { @apply inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-semibold text-emerald-800 shadow-sm; }
+  .today-scope { @apply mb-4 w-fit; }
+  .today-intro { @apply mb-3 text-sm leading-6 text-slate-600; }
+  .today-metrics { @apply mt-4 grid grid-cols-4 gap-2 sm:gap-3; }
+  .today-metric { @apply flex min-h-20 min-w-0 flex-col justify-between rounded-xl border border-transparent px-2 py-2.5 text-left transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sm active:scale-[0.98] sm:min-h-24 sm:px-4 sm:py-3; }
+  .today-metric span { @apply text-[9px] font-bold uppercase leading-3 tracking-wide sm:text-[11px]; }
+  .today-metric strong { @apply text-[23px] font-semibold leading-none tracking-tight sm:text-3xl; }
+  .today-metric small { @apply text-[10px] font-medium tracking-normal sm:text-xs; }
+  .today-metric.rose { @apply bg-rose-50 text-rose-600; }
+  .today-metric.sky { @apply bg-sky-100 text-sky-800; }
+  .today-metric.amber { @apply bg-amber-100 text-amber-700; }
+  .today-metric.emerald { @apply border-slate-100 bg-white text-emerald-800; }
+  .today-sections { @apply grid gap-x-5 xl:grid-cols-2; }
+  .today-section { @apply min-w-0 scroll-mt-24; }
+  .today-section-head { @apply mb-3 mt-7 flex min-h-6 items-center justify-between gap-2; }
+  .today-section-head h2 { @apply mb-0 flex min-w-0 items-center gap-1.5 text-[13px] font-bold uppercase leading-5 tracking-tight text-slate-800 sm:text-sm; }
+  .today-section-head h2 svg { @apply text-emerald-700; }
+  .today-section-head h2.text-rose-600 svg { @apply text-rose-600; }
+  .today-section-head > span { @apply shrink-0 rounded-full bg-white px-2 py-1 text-[10px] font-semibold text-slate-500; }
+  .today-section-head > button { @apply inline-flex shrink-0 items-center gap-0.5 text-xs font-semibold text-emerald-700 transition-colors hover:text-emerald-900; }
+  .today-stack { @apply grid gap-3; }
+  .today-task-card, .today-lead-card, .today-appointment, .today-next-row { @apply min-w-0 rounded-2xl border border-slate-100 bg-white shadow-sm shadow-slate-100; }
+  .today-task-card { @apply border-l-4 border-l-slate-300 p-4; }
+  .today-task-card.is-late { @apply border-l-rose-500; }
+  .today-task-head { @apply flex min-w-0 items-start justify-between gap-2; }
+  .today-task-head strong { @apply text-sm font-semibold leading-5 text-slate-900; overflow-wrap:anywhere; }
+  .today-contact { @apply ml-1.5 text-[11px] font-normal text-slate-400; }
+  .today-time-badge { @apply inline-flex shrink-0 items-center gap-1 rounded-lg bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-600; }
+  .today-time-badge.late { @apply bg-rose-50 text-rose-600; }
+  .today-vehicle { @apply mt-1.5 inline-flex max-w-full items-center gap-1.5 rounded-md bg-slate-100 px-2 py-1 text-[11px] font-medium text-slate-700; }
+  .today-task-title { @apply mb-3 mt-3 rounded-lg bg-rose-50/70 px-3 py-2.5 text-[13px] leading-5 text-slate-700; overflow-wrap:anywhere; }
+  .today-card-actions { @apply flex items-center gap-2; }
+  .today-call, .today-complete, .today-open { @apply inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl px-3 text-xs font-semibold transition-all duration-150 hover:brightness-95 active:scale-[0.98]; }
+  .today-call { @apply flex-1 bg-emerald-700 text-white; }
+  .today-call.outline { @apply border border-emerald-200 bg-emerald-50 text-emerald-800; }
+  .today-call.full { @apply mt-3 w-full; }
+  .today-complete, .today-open { @apply bg-slate-100 text-slate-700; }
+  .today-open { @apply w-10 shrink-0 px-0; }
+  .today-lead-card { @apply bg-white p-4; }
+  .today-lead-top { @apply flex items-center justify-between gap-2; }
+  .today-source { @apply max-w-[70%] truncate rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-semibold tracking-wide text-emerald-800; }
+  .today-lead-card h3 { @apply mb-0 mt-3 text-base font-semibold tracking-tight text-slate-900; overflow-wrap:anywhere; }
+  .today-interest { @apply mb-0 mt-1 text-[13px] font-medium text-sky-800; }
+  .today-note { @apply mb-0 mt-2 text-xs leading-5 text-slate-500; }
+  .today-sla { @apply mt-4 flex flex-wrap items-center justify-between gap-1 rounded-lg bg-slate-50 px-3 py-2 text-[11px]; }
+  .today-sla span { @apply inline-flex items-center gap-1 text-slate-600; }
+  .today-sla svg { @apply text-emerald-700; }
+  .today-appointment, .today-next-row { @apply flex items-center gap-2.5 p-3.5 sm:p-4; }
+  .today-appointment strong, .today-next-row strong { @apply block text-[13px] font-semibold leading-5 text-slate-900; overflow-wrap:anywhere; }
+  .today-appointment span:not(.today-hour), .today-next-row span:not(.today-hour) { @apply block text-[11px] text-slate-500; }
+  .today-appointment small { @apply mt-2 flex items-center gap-1.5 rounded-lg bg-slate-100 px-2 py-1.5 text-[11px] text-slate-600; }
+  .today-hour { @apply shrink-0 rounded-xl bg-slate-100 px-2 py-2 text-[13px] font-bold text-slate-800; }
+  .today-empty { @apply flex min-h-20 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-500; }
+  .today-empty svg { @apply text-emerald-600; }
+  .today-quick-actions { @apply mt-7 grid grid-cols-2 gap-2.5; }
+  .today-quick-actions button { @apply flex min-h-12 items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-2 text-center text-xs font-semibold text-emerald-800 transition-all duration-150 hover:bg-emerald-50 active:scale-[0.98]; }
+  .today-quick-actions button:last-child { @apply text-sky-800; }
+}
