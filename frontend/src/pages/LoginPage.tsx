@@ -1,4 +1,4 @@
-import { ArrowRight, PanelLeft, ShieldCheck } from 'lucide-react'
+import { ArrowRight, CarFront, ShieldCheck } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Button } from '../components/UI'
@@ -22,8 +22,8 @@ export function LoginPage(){
   }
   return <div className="login-page">
     <div className="login-card">
-      <div className="login-logo"><PanelLeft className="h-5 w-5" strokeWidth={1.75}/></div>
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Không gian làm việc</p>
+      <div className="login-hero"><div className="login-logo"><CarFront className="h-5 w-5" strokeWidth={1.75}/></div><div><strong>Sales CRM</strong><span>Không gian làm việc nội bộ</span></div></div>
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Tài khoản nhân viên</p>
       <h1>Chào mừng trở lại</h1>
       <p>Đăng nhập để quản lý khách hàng và công việc hằng ngày.</p>
       {demo&&<div className="demo-login">Đang xem dữ liệu mẫu. Bấm đăng nhập để khám phá giao diện.</div>}

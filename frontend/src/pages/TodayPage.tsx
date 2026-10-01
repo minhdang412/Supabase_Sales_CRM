@@ -25,6 +25,7 @@ export function TodayPage(){
   return <div className="page">
     <PageTitle title="Hôm nay" subtitle={new Intl.DateTimeFormat('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date())} actions={scopeControl}/>
     {q.isLoading?<Skeleton lines={7}/>:q.isError?<EmptyState title="Không tải được Hôm nay" description={q.error.message} action={<Button onClick={()=>q.refetch()}>Thử lại</Button>}/>:d&&<>
+      <div className="today-focus"><div><p>Ưu tiên hôm nay</p><strong>{d.overview.overdue_tasks+d.overview.today_tasks} việc cần xử lý</strong><span>{d.overview.overdue_tasks?`${d.overview.overdue_tasks} việc quá hạn cần xem trước`:'Không có việc quá hạn'}</span></div><Button variant="secondary" onClick={()=>nav('/tasks')}>Xem công việc <ChevronRight className="h-4 w-4" strokeWidth={1.75}/></Button></div>
       <div className="stats-grid">
         {stats.map(s=><Card key={s.label} className={s.warn?'stat-warn':''}><div className="flex items-center justify-between"><span>{s.label}</span><s.icon {...iconProps} className={`h-5 w-5 ${s.warn?'text-rose-500':'text-emerald-600'}`}/></div><div className="flex items-end justify-between"><strong>{s.value}</strong><ArrowUpRight className="h-4 w-4 text-slate-300" strokeWidth={1.75}/></div></Card>)}
       </div>

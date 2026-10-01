@@ -30,7 +30,7 @@ export function TasksPage(){
     <Button variant="secondary" onClick={()=>setTask(t.id)}>Hoàn thành</Button>
   </Card>
   return <div className="page">
-    <PageTitle title="Công việc" subtitle="Việc cần làm và lịch làm việc mẫu" actions={<Button onClick={()=>setCreate(true)}><CalendarPlus className="h-4 w-4" strokeWidth={1.75}/> Tạo công việc</Button>}/>
+    <PageTitle title="Công việc" subtitle="Việc cần làm và lịch làm việc của bạn" actions={<Button onClick={()=>setCreate(true)}><CalendarPlus className="h-4 w-4" strokeWidth={1.75}/> Tạo công việc</Button>}/>
     <div className="tabs">
       <button className={tab==='today'?'active':''} onClick={()=>setTab('today')}>Hôm nay</button>
       <button className={tab==='upcoming'?'active':''} onClick={()=>setTab('upcoming')}>Sắp tới</button>

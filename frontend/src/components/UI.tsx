@@ -25,14 +25,16 @@ const badgeStyles={
   neutral:'border-slate-200 bg-slate-50 text-slate-600',
   success:'border-emerald-200 bg-emerald-50 text-emerald-700',
   danger:'border-rose-200 bg-rose-50 text-rose-700',
-  hot:'border-amber-200 bg-amber-50 text-amber-800',
+  hot:'border-rose-300 bg-rose-100 text-rose-800',
+  potential:'border-violet-200 bg-violet-50 text-violet-700',
+  high:'border-amber-200 bg-amber-50 text-amber-800',
   info:'border-slate-200 bg-white text-slate-700',
 }
 export function Badge({children,tone='neutral'}:{children:ReactNode;tone?:keyof typeof badgeStyles}){
   return <span className={`badge inline-flex w-fit items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-semibold leading-none ${badgeStyles[tone]}`}>{children}</span>
 }
 export function PriorityBadge({value}:{value:string}){
-  return value==='high'?<Badge tone="hot"><Flame className="h-3.5 w-3.5" strokeWidth={1.75}/> Cao</Badge>:<Badge>Bình thường</Badge>
+  return value==='high'?<Badge tone="high"><Flame className="h-3.5 w-3.5" strokeWidth={1.75}/> Cao</Badge>:<Badge>Bình thường</Badge>
 }
 export function StatusMessage({type,children}:{type:'warning'|'success';children:ReactNode}){
   const Icon=type==='warning'?AlertCircle:CheckCircle2
@@ -45,5 +47,5 @@ export function EmptyState({title,description,action}:{title:string;description?
   return <div className="empty flex min-h-52 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-white/70 p-8 text-center"><span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-slate-100 text-slate-400"><Inbox className="h-5 w-5" strokeWidth={1.75}/></span><strong className="text-sm font-semibold text-slate-800">{title}</strong>{description&&<p className="mt-1.5 max-w-sm text-sm leading-6 text-slate-500">{description}</p>}{action&&<div className="mt-4">{action}</div>}</div>
 }
 export function PageTitle({title,subtitle,actions}:{title:string;subtitle?:string;actions?:ReactNode}){
-  return <header className="page-title mb-7 flex flex-col justify-between gap-4 border-b border-slate-200/70 pb-6 sm:flex-row sm:items-end"><div className="min-w-0"><p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Sales workspace</p><h1 className="text-[26px] font-semibold tracking-tight text-slate-900 sm:text-[30px]">{title}</h1>{subtitle&&<p className="mt-1.5 text-sm text-slate-500">{subtitle}</p>}</div>{actions&&<div className="page-actions flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}</header>
+  return <header className="page-title mb-7 flex flex-col justify-between gap-4 border-b border-slate-200/70 pb-6 sm:flex-row sm:items-end"><div className="min-w-0"><p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700">Không gian bán hàng</p><h1 className="text-[26px] font-semibold tracking-tight text-slate-900 sm:text-[30px]">{title}</h1>{subtitle&&<p className="mt-1.5 text-sm text-slate-500">{subtitle}</p>}</div>{actions&&<div className="page-actions flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}</header>
 }
