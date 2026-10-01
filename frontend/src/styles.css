@@ -359,3 +359,204 @@
   .customer-card .avatar { display: grid; }
   .pipeline-row-main .meta-row > .badge:first-child { flex-basis: auto; }
 }
+
+/* Today: the supplied Stitch mobile and desktop compositions. */
+@layer components {
+  .today-topbar { @apply bg-white; }
+  .today-topbar-search { @apply hidden h-10 min-w-0 flex-1 items-center gap-2 rounded-xl bg-slate-50 px-4 text-slate-500 lg:flex; max-width:550px; }
+  .today-topbar-search input { @apply w-full min-w-0 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400; }
+  .today-topbar-brand { @apply flex min-w-0 flex-col leading-tight; }
+  .today-topbar-brand span { @apply truncate text-[10px] font-semibold uppercase tracking-wider text-emerald-800; }
+  .today-topbar-brand strong { @apply text-sm font-semibold text-slate-900; }
+  .today-page { @apply max-w-[1440px] bg-slate-50 pb-32 pt-4 lg:px-6 lg:pb-12 lg:pt-5 xl:px-9; }
+  .today-mobile-only, .today-mobile-intro, .today-mobile-progress { display:none; }
+  .today-online-dot { @apply inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-700; }
+  .today-hero { @apply flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm; }
+  .today-hero-mark { @apply relative grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-800; }
+  .today-hero-mark > span { @apply absolute -right-1 -top-1 h-3 w-3 rounded-full bg-rose-500 ring-2 ring-white; }
+  .today-hero-copy { @apply min-w-0 flex-1; }
+  .today-eyebrow { display:none; }
+  .today-hero h1 { @apply mb-0 text-xl font-semibold tracking-tight text-slate-900 xl:text-2xl; }
+  .today-hero-desktop { @apply mb-0 mt-1 text-sm text-slate-500; }
+  .today-hero-desktop strong { @apply text-emerald-700; }
+  .today-hero-controls { @apply flex flex-wrap items-center gap-2; }
+  .today-hero-pill { display:none; }
+  .today-scope { @apply border-0 bg-slate-100; }
+  .today-scope button { @apply inline-flex items-center gap-1.5; }
+  .today-hero-filter, .today-hero-create { @apply inline-flex min-h-10 items-center gap-2 rounded-xl px-3 text-sm font-semibold transition-all duration-150 hover:brightness-95 active:scale-[0.98]; }
+  .today-hero-filter { @apply border border-slate-100 bg-white text-slate-800 shadow-sm; }
+  .today-hero-create { @apply bg-emerald-700 text-white; }
+  .today-kpis { @apply mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4; }
+  .today-kpi { @apply relative flex min-h-[162px] min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white p-4 text-left shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98]; }
+  .today-kpi-label { @apply max-w-[calc(100%-40px)] text-[11px] font-semibold uppercase tracking-[0.13em] text-slate-600; }
+  .today-kpi > svg { @apply absolute right-4 top-4 h-7 w-7 rounded-lg bg-rose-50 p-1.5 text-rose-600; }
+  .today-kpi div { @apply mt-3 flex flex-wrap items-end gap-2; }
+  .today-kpi strong { @apply text-4xl font-semibold leading-none tabular-nums tracking-tight text-rose-600; }
+  .today-kpi strong em { @apply text-base font-normal not-italic text-slate-500; }
+  .today-kpi small { @apply pb-0.5 text-xs font-medium text-rose-600; }
+  .today-kpi p { @apply mb-3 mt-1 min-h-4 truncate text-xs text-slate-500; }
+  .today-kpi i { @apply mt-auto h-1 w-full rounded-full bg-rose-500; }
+  .today-kpi.blue > svg { @apply bg-indigo-100 text-sky-700; }
+  .today-kpi.blue strong, .today-kpi.blue small { @apply text-sky-800; }
+  .today-kpi.blue i { @apply bg-sky-700; }
+  .today-kpi.amber > svg { @apply bg-amber-100 text-amber-700; }
+  .today-kpi.amber strong, .today-kpi.amber small { @apply text-amber-700; }
+  .today-kpi.amber i { @apply bg-amber-500; }
+  .today-kpi.emerald > svg { @apply bg-emerald-50 text-emerald-700; }
+  .today-kpi.emerald strong, .today-kpi.emerald small { @apply text-emerald-800; }
+  .today-kpi.emerald i { @apply bg-emerald-700; }
+  .today-main-grid { @apply mt-5 grid min-w-0 gap-5 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]; }
+  .today-main-left, .today-main-right { @apply flex min-w-0 flex-col gap-5; }
+  .today-panel { @apply min-w-0 scroll-mt-24 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm; }
+  .today-panel-head { @apply mb-4 flex flex-wrap items-center justify-between gap-2; }
+  .today-panel-head h2 { @apply mb-0 flex min-w-0 items-center gap-2 text-base font-semibold tracking-tight text-slate-900; }
+  .today-panel-head h2 > svg { @apply h-5 w-5 text-emerald-800; }
+  .today-panel-dot { @apply h-2.5 w-2.5 shrink-0 rounded-full; }
+  .today-panel-dot.rose { @apply bg-rose-500; }
+  .today-panel-dot.blue { @apply bg-sky-700; }
+  .today-priority-pill, .today-sla-pill, .today-panel-count { @apply shrink-0 rounded-full bg-rose-50 px-2 py-1 text-[11px] font-semibold text-rose-600; }
+  .today-sla-pill { @apply bg-indigo-100 text-sky-800; }
+  .today-panel-count { @apply bg-emerald-50 text-emerald-800; }
+  button.today-panel-count { @apply transition-colors hover:bg-emerald-100; }
+  .today-panel-list { @apply grid gap-3; }
+  .today-overdue-card, .today-lead-card { @apply min-w-0 rounded-2xl bg-[#eef3ff] p-4; }
+  .today-person-line { @apply flex min-w-0 items-start gap-3; }
+  .today-initials { @apply grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#d5e4fd] text-sm font-semibold text-slate-900; }
+  .today-initials.green { @apply h-12 w-12 rounded-xl bg-emerald-700 text-base text-white; }
+  .today-person-copy { @apply min-w-0 flex-1; }
+  .today-person-name { @apply flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1; }
+  .today-person-name strong { @apply text-sm font-semibold text-slate-900; overflow-wrap:anywhere; }
+  .today-person-name > span:not(.today-hot) { @apply text-xs text-slate-500; }
+  .today-hot { @apply inline-flex items-center gap-0.5 rounded-full border border-rose-200 bg-rose-50 px-1.5 py-0.5 text-[10px] font-semibold text-rose-700; }
+  .today-hot svg { @apply h-3 w-3; }
+  .today-car { @apply mt-1 inline-flex max-w-full items-center gap-1 rounded-md text-xs font-medium text-sky-800; overflow-wrap:anywhere; }
+  .today-car svg { @apply h-4 w-4; }
+  .today-late { @apply inline-flex max-w-[145px] shrink-0 items-center gap-1 rounded-lg bg-rose-50 px-2 py-1 text-[11px] font-semibold text-rose-600; }
+  .today-action-detail { @apply mb-0 mt-3 rounded-xl bg-white px-3 py-2.5 text-[13px] leading-5 text-slate-700; overflow-wrap:anywhere; }
+  .today-actions { @apply mt-3 flex flex-wrap items-center gap-2; }
+  .today-action { @apply inline-flex min-h-9 min-w-0 items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-150 hover:brightness-95 active:scale-[0.98]; }
+  .today-action.primary { @apply bg-emerald-700 text-white; }
+  .today-action.secondary { @apply bg-white text-sky-800; }
+  .today-action.quiet { @apply bg-white text-slate-600; }
+  .today-action.done { @apply ml-auto bg-white text-emerald-800; }
+  .today-lead-top { @apply mb-3 flex flex-wrap items-center justify-between gap-2; }
+  .today-source { @apply inline-flex max-w-[65%] items-center gap-1.5 truncate rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-semibold tracking-wide text-emerald-800; }
+  .today-source .today-online-dot { @apply h-1.5 w-1.5; }
+  .today-sla-clock { @apply inline-flex shrink-0 items-center gap-1 rounded-xl bg-white px-2 py-1 font-mono text-[13px] font-bold tabular-nums text-rose-600; }
+  .today-sla-clock.late { @apply bg-rose-600 text-white; }
+  .today-lead-person { @apply flex min-w-0 items-start gap-3; }
+  .today-lead-person .today-person-name strong { @apply text-lg; }
+  .today-contact { @apply mt-1 block text-xs text-slate-500; }
+  .today-interest { @apply mt-1 block text-sm font-semibold text-emerald-800; }
+  .today-lead-note { @apply mt-3 rounded-xl bg-white p-3 text-xs leading-5 text-slate-700; overflow-wrap:anywhere; }
+  .today-lead-note span { @apply mr-2 text-[10px] font-bold uppercase tracking-wider text-slate-500; }
+  .today-sla-row { @apply mt-3 flex flex-wrap items-center justify-between gap-1 rounded-xl bg-white p-2.5 text-xs text-slate-600; }
+  .today-sla-row span { @apply inline-flex items-center gap-1; }
+  .today-sla-row span svg { @apply text-emerald-700; }
+  .today-sla-row strong { @apply text-emerald-800; }
+  .today-sla-row strong.danger { @apply text-rose-600; }
+  .today-lead-card .today-action.primary { @apply min-h-11 flex-1; }
+  .today-appointment { @apply rounded-xl bg-[#eef3ff] p-4; }
+  .today-appointment-top { @apply flex flex-wrap items-center gap-2; }
+  .today-appointment-top strong { @apply text-sm font-semibold text-slate-900; }
+  .today-hour { @apply shrink-0 rounded-lg bg-emerald-700 px-2 py-1.5 text-sm font-bold tabular-nums text-white; }
+  .today-appointment-info { @apply mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 rounded-lg bg-white p-3 text-xs; }
+  .today-appointment-info span { @apply text-slate-500; }
+  .today-appointment-info strong { @apply min-w-0 text-right font-medium text-slate-800; overflow-wrap:anywhere; }
+  .today-appointment-actions { @apply mt-3 grid grid-cols-2 gap-2; }
+  .today-appointment-actions button { @apply inline-flex min-h-10 items-center justify-center gap-1 rounded-lg bg-white px-2 text-xs font-semibold text-slate-700 transition-all duration-150 hover:bg-slate-50 active:scale-[0.98]; }
+  .today-appointment-actions button:last-child { @apply bg-emerald-700 text-white; }
+  .today-summary-body { @apply rounded-xl bg-amber-50 p-4; }
+  .today-summary-body > div:first-child { @apply flex items-end justify-between gap-2; }
+  .today-summary-body strong { @apply text-base font-semibold text-slate-900; }
+  .today-summary-body span { @apply text-xs text-slate-500; }
+  .today-summary-bar { @apply mt-3 h-2 overflow-hidden rounded-full bg-amber-200; }
+  .today-summary-bar span { @apply block h-full rounded-full bg-emerald-700; }
+  .today-next-task { @apply flex min-w-0 items-center gap-2.5 rounded-xl bg-[#eef3ff] p-3; }
+  .today-next-task .today-hour { @apply bg-white text-xs text-slate-800; }
+  .today-next-task strong { @apply block text-sm font-semibold text-slate-900; overflow-wrap:anywhere; }
+  .today-next-task div > span { @apply mt-0.5 block text-xs text-slate-500; }
+  .today-next-task button { @apply grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white text-emerald-700 transition-all duration-150 hover:bg-emerald-50 active:scale-[0.98]; }
+  .today-quick-actions { @apply mt-4 grid grid-cols-2 gap-2; }
+  .today-quick-actions button { @apply inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl bg-slate-100 px-2 text-xs font-semibold text-emerald-800 transition-all duration-150 hover:bg-emerald-50 active:scale-[0.98]; }
+  .today-quick-actions button:last-child { @apply text-sky-800; }
+  .today-empty { @apply flex min-h-20 items-center gap-2 rounded-xl bg-slate-50 px-4 py-3 text-xs text-slate-500; }
+  .today-empty svg { @apply text-emerald-700; }
+}
+
+@media (max-width: 1023px) {
+  .today-topbar .topbar-actions > .avatar { display:grid; border-radius:999px; background:#047857; color:white; }
+  .today-topbar .topbar-action { border:0; }
+  .today-desktop-extra, .today-hero-mark, .today-hero-tail, .today-hero-desktop, .today-hero-filter, .today-hero-create { display:none !important; }
+  .today-mobile-only, .today-mobile-intro, .today-mobile-progress { display:block; }
+  .today-page { padding-top:12px; }
+  .today-hero { display:flex; flex-wrap:nowrap; gap:8px; padding:0; border:0; background:transparent; box-shadow:none; }
+  .today-hero-copy { min-width:0; }
+  .today-eyebrow { display:flex; align-items:center; gap:6px; margin:0 0 4px; color:#475569; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; }
+  .today-hero h1 { font-size:23px; line-height:29px; }
+  .today-hero-pill { display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:7px 9px; background:white; color:#047857; font-size:11px; font-weight:700; white-space:nowrap; }
+  .today-scope { margin:0; }
+  .today-scope button { padding:6px; }
+  .today-scope button svg { display:none; }
+  .today-hero-controls { justify-content:flex-end; }
+  .today-mobile-intro { margin:10px 0 12px; color:#475569; font-size:13px; line-height:20px; }
+  .today-mobile-intro strong { color:#e11d48; }
+  .today-mobile-intro b { color:#0369a1; }
+  .today-mobile-progress { height:6px; margin-bottom:13px; border-radius:999px; overflow:hidden; background:#dbeafe; }
+  .today-mobile-progress span { display:block; height:100%; border-radius:999px; background:#047857; }
+  .today-kpis { grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin-top:0; }
+  .today-kpi { min-height:75px; align-items:center; justify-content:center; padding:7px 3px; border-color:transparent; border-radius:13px; text-align:center; }
+  .today-kpi.rose { background:#fff1f2; }
+  .today-kpi.blue { background:#dbeafe; }
+  .today-kpi.amber { background:#fef3c7; }
+  .today-kpi-label { max-width:none; font-size:9px; line-height:11px; letter-spacing:.08em; color:inherit; }
+  .today-kpi-label > .today-mobile-only { display:block; }
+  .today-kpi-label { font-size:0; }
+  .today-kpi-label > .today-mobile-only { font-size:9px; }
+  .today-kpi.blue .today-kpi-label { font-size:9px; }
+  .today-kpi svg, .today-kpi p, .today-kpi i, .today-kpi small { display:none; }
+  .today-kpi div { margin-top:4px; }
+  .today-kpi strong { font-size:22px; }
+  .today-kpi strong em { font-size:11px; }
+  .today-main-grid { display:flex; flex-direction:column; gap:14px; margin-top:14px; }
+  .today-main-left, .today-main-right { gap:14px; }
+  .today-panel { padding:0; border:0; background:transparent; box-shadow:none; }
+  .today-panel-head { margin:0 0 9px; }
+  .today-panel-head h2 { gap:6px; font-size:13px; line-height:20px; text-transform:uppercase; }
+  .today-panel-head h2 > .today-mobile-only { display:inline; }
+  .today-panel-head h2:has(.rose) { color:#e11d48; }
+  .today-priority-pill { padding:3px 7px; }
+  .today-panel-list { gap:10px; }
+  .today-overdue-card { position:relative; padding:13px 12px 13px 17px; border-radius:14px; border:1px solid #e2e8f0; background:white; box-shadow:0 1px 3px rgba(15,23,42,.04); overflow:hidden; }
+  .today-overdue-card::before { content:''; position:absolute; inset:0 auto 0 0; width:4px; background:#e11d48; }
+  .today-initials { display:none; }
+  .today-person-line { gap:6px; }
+  .today-person-name strong { font-size:13px; }
+  .today-person-name > span:not(.today-hot) { font-size:11px; }
+  .today-car { padding:3px 6px; border-radius:5px; background:#f1f5f9; color:#334155; font-size:11px; }
+  .today-late { max-width:115px; text-align:center; font-size:10px; }
+  .today-action-detail { margin-top:9px; padding:8px 9px; border-radius:8px; background:#fff1f2; font-size:12px; }
+  .today-actions { flex-wrap:nowrap; gap:6px; margin-top:11px; }
+  .today-action { min-height:38px; padding:5px 8px; white-space:nowrap; }
+  .today-action.primary { flex:1; }
+  .today-action.quiet { flex:0; }
+  .today-action.done { margin-left:0; }
+  .today-lead-card { border:1px solid #e2e8f0; background:linear-gradient(135deg,#fff,#f0f6ff); box-shadow:0 1px 3px rgba(15,23,42,.04); }
+  .today-lead-person .today-person-name strong { font-size:15px; }
+  .today-lead-person .today-initials { display:none; }
+  .today-lead-note { padding:0; background:transparent; }
+  .today-sla-row { padding:8px; font-size:11px; }
+  .today-lead-card .today-action.primary { min-height:44px; }
+  .today-main-right { display:flex; }
+  .today-summary { order:0; padding:12px; border:1px solid #e2e8f0; border-radius:14px; background:white; box-shadow:0 1px 3px rgba(15,23,42,.04); }
+  .today-summary .today-panel-head { margin:0; }
+  .today-summary-body { display:none; }
+  .today-appointments { order:1; }
+  .today-next { order:2; }
+  .today-appointment, .today-next-task { background:white; border:1px solid #e2e8f0; box-shadow:0 1px 3px rgba(15,23,42,.04); }
+  .today-appointment-info { background:#f1f5f9; }
+  .today-hour { background:#f1f5f9; color:#0f172a; }
+  .today-appointment-actions button:first-child { background:#f1f5f9; }
+  .today-quick-actions { margin-top:14px; }
+  .today-quick-actions button { min-height:45px; background:white; border:1px solid #e2e8f0; }
+}

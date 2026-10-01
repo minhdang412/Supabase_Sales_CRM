@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { BarChart3, Bell, BriefcaseBusiness, CalendarCheck2, ChevronDown, CircleDollarSign, ContactRound, LayoutDashboard, LogOut, Menu, CarFront, Plus, Settings2, UsersRound } from 'lucide-react'
+import { BarChart3, Bell, BriefcaseBusiness, CalendarCheck2, ChevronDown, CircleDollarSign, ContactRound, LayoutDashboard, LogOut, Menu, CarFront, Plus, Search, Settings2, UsersRound } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
@@ -32,6 +32,8 @@ export function AppShell(){
   const [add,setAdd]=useState(false)
   const [newTask,setNewTask]=useState(false)
   const [notificationsOpen,setNotificationsOpen]=useState(false)
+  const [shellSearch,setShellSearch]=useState('')
+  const onToday=loc.pathname==='/today'
   const admin=profile?.role==='admin'
   const canManage=profile&&['team_leader','sales_manager','admin'].includes(profile.role)
   useCrmRealtime(profile?.id)
@@ -42,7 +44,7 @@ export function AppShell(){
 
   return <div className="app-shell">
     <aside className="sidebar">
-      <div className="brand"><div className="brand-mark"><CarFront className="h-5 w-5" strokeWidth={1.75}/></div><div><strong>Sales CRM</strong><span>Không gian làm việc</span></div></div>
+      <div className="brand"><div className="brand-mark"><CarFront className="h-5 w-5" strokeWidth={1.75}/></div><div><strong>{onToday?'AUTO CRM':'Sales CRM'}</strong><span>{onToday?'Không gian showroom':'Không gian làm việc'}</span></div></div>
       <p className="sidebar-section-label">Điều hành</p>
       <nav aria-label="Điều hướng chính">{primaryNav.map(navItem)}</nav>
       <p className="sidebar-section-label mt-8">Phân tích & quản trị</p>
@@ -58,8 +60,9 @@ export function AppShell(){
 
     <main className="main">
       {demo&&<div className="demo-bar"><span>Đang xem dữ liệu mẫu</span><select aria-label="Vai trò Demo" value={profile?.role} onChange={e=>setDemoRole(e.target.value as any)}><option value="sales">Nhân viên</option><option value="team_leader">Trưởng nhóm</option><option value="sales_manager">Trưởng phòng</option><option value="admin">Admin</option></select></div>}
-      <div className="topbar">
-        <div className="flex min-w-0 items-center gap-3"><div className="grid h-8 w-8 place-items-center rounded-lg bg-emerald-600 text-white lg:hidden"><CarFront className="h-4 w-4" strokeWidth={1.75}/></div><span className="topbar-label hidden sm:inline">Sales CRM</span><ChevronDown className="hidden h-3 w-3 text-slate-300 sm:inline" strokeWidth={1.75}/><span className="truncate text-sm font-semibold text-slate-800">{section}</span></div>
+      <div className={`topbar ${onToday?'today-topbar':''}`}>
+        <div className="flex min-w-0 items-center gap-3"><div className="grid h-8 w-8 place-items-center rounded-lg bg-emerald-600 text-white lg:hidden"><CarFront className="h-4 w-4" strokeWidth={1.75}/></div>{onToday?<div className="today-topbar-brand lg:hidden"><span>SHOWROOM · Online</span><strong>Hôm nay</strong></div>:<><span className="topbar-label hidden sm:inline">Sales CRM</span><ChevronDown className="hidden h-3 w-3 text-slate-300 sm:inline" strokeWidth={1.75}/><span className="truncate text-sm font-semibold text-slate-800">{section}</span></>}</div>
+        {onToday&&<form className="today-topbar-search" onSubmit={e=>{e.preventDefault();navTo(`/customers?q=${encodeURIComponent(shellSearch.trim())}`)}}><Search className="h-4 w-4" strokeWidth={1.75}/><input aria-label="Tìm khách hàng" placeholder="Tìm kiếm khách hàng, SĐT, mẫu xe..." value={shellSearch} onChange={e=>setShellSearch(e.target.value)}/><button type="submit" className="sr-only">Tìm kiếm</button></form>}
         <div className="topbar-actions"><Button className="hidden lg:inline-flex" onClick={()=>setAdd(true)}><Plus className="h-4 w-4" strokeWidth={1.75}/> Thêm khách</Button><button className="topbar-action" aria-label="Thông báo" onClick={()=>setNotificationsOpen(true)}><Bell className="h-4 w-4" strokeWidth={1.75}/>{unread>0&&<span className="topbar-count">{unread>9?'9+':unread}</span>}</button><div className="avatar ml-1 hidden sm:grid" title={profile?.full_name}>{profile?.full_name?.slice(0,1)??'U'}</div></div>
       </div>
       <Outlet/>

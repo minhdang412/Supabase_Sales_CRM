@@ -13,6 +13,73 @@ export async function getToday(scope='self'): Promise<TodayDashboard> {
   return data as TodayDashboard
 }
 
+export interface TodayCustomerPreview {
+  id: string
+  display_name: string
+  note?: string | null
+  phone?: string | null
+  vehicle?: string | null
+  potential?: string | null
+}
+
+export async function getTodayCustomerPreviews(ids: string[]): Promise<Record<string, TodayCustomerPreview>> {
+  if (!ids.length) return {}
+  if (isDemoMode) {
+    const previews:Record<string,TodayCustomerPreview>={}
+    ids.forEach(id => {
+      const customer = demoCustomers.find(c => c.customer_id === id)
+      if (!customer) return
+      const detail = id === 'c1' ? getDemoCustomer(id) : null
+      const opportunity = detail?.opportunities[0]
+      previews[id] = {
+        id,
+        display_name: customer.display_name,
+        note: detail?.note ?? null,
+        phone: detail?.contacts.find(c => c.contact_type === 'phone')?.raw_value ?? customer.primary_contact ?? null,
+        vehicle: [opportunity?.product?.name, opportunity?.variant?.name].filter(Boolean).join(' ') || null,
+        potential: customer.active_opportunity?.potential_level ?? null,
+      }
+    })
+    return previews
+  }
+  const {data, error} = await sb().from('customers').select(`
+    id, display_name, note,
+    customer_contacts(contact_type,raw_value,is_primary),
+    opportunities(status,potential_level,products(name),product_variants(name))
+  `).in('id', ids)
+  if (error) throw error
+  return Object.fromEntries((data ?? []).map((row:any) => {
+    const phone = row.customer_contacts?.find((c:any) => c.contact_type === 'phone' && c.is_primary)
+      ?? row.customer_contacts?.find((c:any) => c.contact_type === 'phone')
+    const opportunity = row.opportunities?.find((o:any) => o.status === 'active') ?? row.opportunities?.[0]
+    return [row.id, {
+      id:row.id, display_name:row.display_name, note:row.note,
+      phone:phone?.raw_value ?? null,
+      vehicle:[opportunity?.products?.name, opportunity?.product_variants?.name].filter(Boolean).join(' ') || null,
+      potential:opportunity?.potential_level ?? null,
+    }]
+  }))
+}
+
+export async function getTodayCompleted(scope:'self'|'team'|'department', identity:{id:string;team_id?:string|null;department_id?:string|null}):Promise<number>{
+  if (isDemoMode) return 4
+  const day=new Date(Date.now()+7*60*60*1000).toISOString().slice(0,10)
+  const next=new Date(Date.parse(`${day}T00:00:00Z`)+86400000).toISOString().slice(0,10)
+  let query=sb().from('tasks').select('id',{count:'exact',head:true}).eq('status','completed')
+    .gte('completed_at',`${day}T00:00:00+07:00`).lt('completed_at',`${next}T00:00:00+07:00`)
+  if(scope==='self')query=query.eq('assigned_user_id',identity.id)
+  else if(scope==='team'){
+    if(!identity.team_id)return 0
+    query=query.eq('team_id',identity.team_id)
+  }else{
+    if(!identity.department_id)return 0
+    query=query.eq('department_id',identity.department_id)
+  }
+  const {count,error}=await query
+  if(error)throw error
+  return count??0
+}
+
 export async function searchCustomers(query='', options?:{quickFilter?:'all'|'hot'|'high'|'no_next'|'stale';sourceId?:string;stageId?:string;limit?:number;offset?:number}): Promise<CustomerListItem[]> {
   const limit=options?.limit ?? 25
   const offset=options?.offset ?? 0

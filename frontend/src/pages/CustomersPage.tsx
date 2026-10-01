@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { ArrowUpRight, Clock3, Filter, Plus, Search, UsersRound, CalendarClock, CarFront } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { QuickCreateLead } from '../components/QuickCreateLead'
 import { Sheet } from '../components/Sheet'
 import { Badge, Button, Card, EmptyState, PageTitle, PriorityBadge, Skeleton } from '../components/UI'
@@ -18,7 +18,8 @@ const quickFilters:Array<{key:QuickFilter;label:string}>=[
 ]
 
 export function CustomersPage(){
-  const [qv,setQv]=useState('')
+  const [params]=useSearchParams()
+  const [qv,setQv]=useState(params.get('q')??'')
   const [add,setAdd]=useState(false)
   const [filterOpen,setFilterOpen]=useState(false)
   const [quickFilter,setQuickFilter]=useState<QuickFilter>('all')
